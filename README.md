@@ -17,9 +17,10 @@ Simple app to enter number and redirect to whatsapp directly without saving the 
 
 ## IOS ScreenShots
 <p>
-<img src="https://github.com/yashas-hm/Easy-WhatsApp-Flutter/blob/master/images/IOS/1.png" width=200/>
-<img src="https://github.com/yashas-hm/Easy-WhatsApp-Flutter/blob/master/images/IOS/2.png" width=200/>
-<img src="https://github.com/yashas-hm/Easy-WhatsApp-Flutter/blob/master/images/IOS/3.png" width=200/>
-<img src="https://github.com/yashas-hm/Easy-WhatsApp-Flutter/blob/master/images/IOS/4.png" width=200/>
-<img src="https://github.com/yashas-hm/Easy-WhatsApp-Flutter/blob/master/images/IOS/5.png" width=200/>
+<img src="https://github.com/yashas-hm/Direct-Message/blob/master/images/IOS/1.png" width=200/>
+<img src="https://github.com/yashas-hm/Direct-Message/blob/master/images/IOS/2.png" width=200/>
+<img src="https://github.com/yashas-hm/Direct-Message/blob/master/images/IOS/3.png" width=200/>
+<img src="https://github.com/yashas-hm/Direct-Message/blob/master/images/IOS/4.png" width=200/>
+<img src="https://github.com/yashas-hm/Direct-Message/blob/master/images/IOS/5.png" width=200/>
+<img src="https://github.com/yashas-hm/Direct-Message/blob/master/images/IOS/6.png" width=200/>
 </p>
