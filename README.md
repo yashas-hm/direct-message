@@ -1,5 +1,8 @@
 # Direct Message
-
+<p align="center">
+  <img src="https://github.com/yashas-hm/Direct-Message/blob/master/images/Android/Feature%20Graphic.jpg">
+</p>
+<br>
 Hassle-free conversation on WhatsApp without saving the number<br>
 Simple app to enter number and redirect to whatsapp directly without saving the number.<br>
 
