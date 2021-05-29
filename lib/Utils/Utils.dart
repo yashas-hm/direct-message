@@ -16,6 +16,14 @@ read(TextEditingController controller) async {
   }
 }
 
+pasteCheck(TextEditingController phone, TextEditingController countryCode) {
+  final String text = phone.text;
+  if (text.length > 10) {
+    phone.text = text.substring(text.length-10);
+    countryCode.text = text.substring(0, text.length-10);
+  }
+}
+
 save(String code) async {
   final prefs = await SharedPreferences.getInstance();
   final key = 'country_code';
@@ -73,11 +81,22 @@ showSnackBar(BuildContext context, String data) {
 openerDetails(BuildContext context, TextEditingController controller,
     TextEditingController codeController) {
   String phone = controller.text;
-  String code = codeController.text;
+  String code = '';
+  if(codeController.text!='')
+    if(codeController.text[0]=='+'){
+      code = codeController.text;
+    }else{
+      code = codeController.text.substring(1, codeController.text.length);
+    }
+
+  if(code[0]=='+'){
+    code = code.substring(1, code.length);
+  }
+
   if (phone == '') {
     showSnackBar(context, 'Enter Number');
   } else if (phone.length < 10) {
-    showSnackBar(context, 'Invalid Number');
+    showSnackBar(context, 'Invalid Number. Greater than 10 digits');
   } else if (code == '') {
     showSnackBar(context, 'Enter Country Code');
   } else if (!codeArray.contains(code)) {

@@ -8,10 +8,10 @@ import 'Widgets/BuildApp.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
-  runApp(EasyWhatsapp());
+  runApp(DirectMessage());
 }
 
-class EasyWhatsapp extends StatelessWidget {
+class DirectMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return buildApp(context);
