@@ -19,8 +19,8 @@ read(TextEditingController controller) async {
 pasteCheck(TextEditingController phone, TextEditingController countryCode) {
   final String text = phone.text;
   if (text.length > 10) {
-    phone.text = text.substring(text.length-10);
-    countryCode.text = text.substring(0, text.length-10);
+    phone.text = text.substring(text.length - 10);
+    countryCode.text = text.substring(0, text.length - 10);
   }
 }
 
@@ -82,15 +82,12 @@ openerDetails(BuildContext context, TextEditingController controller,
     TextEditingController codeController) {
   String phone = controller.text;
   String code = '';
-  if(codeController.text!='')
-    if(codeController.text[0]=='+'){
+  if (codeController.text != '') {
+    if (codeController.text[0] != '+') {
       code = codeController.text;
-    }else{
+    } else {
       code = codeController.text.substring(1, codeController.text.length);
     }
-
-  if(code[0]=='+'){
-    code = code.substring(1, code.length);
   }
 
   if (phone == '') {
