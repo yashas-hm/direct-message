@@ -6,6 +6,8 @@
 Hassle-free conversation on WhatsApp without saving the number<br>
 Simple app to enter number and redirect to whatsapp directly without saving the number.<br>
 
+[DOWNLOAD NOW!!!](https://play.google.com/store/apps/details?id=com.yashas.flutter.directmessage.direct_message)
+
 ## Android ScreenShots
 <p>
 <img src="https://github.com/yashas-hm/Direct-Message/blob/master/images/Android/1.png" width=200/>
