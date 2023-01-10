@@ -30,15 +30,21 @@ save(String code) async {
   prefs.setString(key, code);
 }
 
-openWhatsapp(
-    BuildContext context, final String phone, final String code) async {
+openWhatsapp(BuildContext context, final String phone, String code) async {
   save(code);
-  String url = "https://api.whatsapp.com/send?phone=$code$phone&text=";
-  final String encoded = Uri.encodeFull(url);
-  if (await canLaunch(encoded)) {
-    await launch(encoded);
+  if (!code.contains('+')) {
+    code = '+' + code;
+  }
+  String url = "https://api.whatsapp.com/send?phone=$code$phone";
+
+  final Uri encoded = Uri.parse(url);
+  if (await canLaunchUrl(encoded)) {
+    await launchUrl(
+      encoded,
+      mode: LaunchMode.externalApplication,
+    );
   } else {
-    showSnackBar(context, 'Some unexpected error occurred');
+    showSnackBar(context, 'Some unexpected error occurred 0');
     throw 'Cannot open $encoded';
   }
 }

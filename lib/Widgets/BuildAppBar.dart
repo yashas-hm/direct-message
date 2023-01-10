@@ -8,15 +8,16 @@ Widget buildAppbar(BuildContext context) {
       ? CupertinoNavigationBar(
           middle: Text(
             'Direct Message',
-            style: TextStyle(
-                color: CupertinoTheme.of(context).primaryContrastingColor),
+            style: TextStyle(color: Colors.white),
           ),
           backgroundColor: CupertinoTheme.of(context).primaryColor,
         )
       : AppBar(
           title: Text(
             'Direct Message',
-            style: TextStyle(color: Theme.of(context).accentColor),
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
         );
 }

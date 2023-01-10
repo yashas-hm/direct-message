@@ -41,9 +41,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
+    <key>LSApplicationQueriesSchemes</key>
         <array>
-          <string>whatsapp</string>
+            <string>https</string>
         </array>
     <key>GADApplicationIdentifier</key>
     <string>ca-app-pub-1043871887446386~3052597577</string>

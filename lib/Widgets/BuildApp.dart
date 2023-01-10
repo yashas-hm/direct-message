@@ -24,7 +24,12 @@ Widget buildApp(BuildContext context) {
             brightness: Brightness.light,
             primaryColor: Color.fromARGB(255, 249, 249, 249),
             scaffoldBackgroundColor: Color.fromARGB(255, 249, 249, 249),
-            accentColor: Color.fromARGB(255,  236, 88, 97),
+          ).copyWith(
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: Color.fromARGB(255,  236, 88, 97),
+                primary: Color.fromARGB(255,  236, 88, 97),
+                secondary: Color.fromARGB(255,  236, 88, 97),
+              ),
           ),
           home: HomePage(),
           debugShowCheckedModeBanner: false,

@@ -20,44 +20,38 @@ class _BuildBodyState extends State<BuildBody>
   TextEditingController codeController = TextEditingController();
   late AnimationController animationController;
   late Animation animation;
-
+  bool adLoading = true;
   FocusNode phoneFocus = FocusNode();
   FocusNode codeFocus = FocusNode();
 
-  final BannerAd bannerAd = BannerAd(
-    adUnitId: Platform.isIOS ? AdID().bannerIOS : AdID().bannerAndroid,
-    size: Platform.isIOS ? AdSize.smartBannerPortrait : AdSize.smartBanner,
-    request: AdRequest(
-      testDevices: ['C9971B06E2748F2EC489FB804F9EEC39'],
-    ),
-    listener: AdListener(),
-  );
+  late final BannerAd bannerAd;
 
-  final InterstitialAd interstitialAd = InterstitialAd(
-    adUnitId: Platform.isIOS ? AdID().resumeIOS : AdID().resumeAndroid,
-    listener: AdListener(),
-    request: AdRequest(
-      testDevices: ['C9971B06E2748F2EC489FB804F9EEC39'],
-    ),
-  );
+  late final InterstitialAd interstitialAd;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addObserver(this);
-    bannerAd.load();
-    interstitialAd.load();
+    WidgetsBinding.instance.addObserver(this);
+    InterstitialAd.load(
+      adUnitId: Platform.isIOS ? AdID().resumeIOS : AdID().resumeAndroid,
+      request: AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (InterstitialAd ad) {
+          this.interstitialAd = ad;
+        },
+        onAdFailedToLoad: (LoadAdError error) {
+          print('InterstitialAd failed to load: $error');
+        },
+      ),
+    );
     read(codeController);
 
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animation = Tween(
-            begin: 300.0,
-            end: 200.0)
-        .animate(animationController)
-          ..addListener(() {
-            setState(() {});
-          });
+    animation = Tween(begin: 300.0, end: 200.0).animate(animationController)
+      ..addListener(() {
+        setState(() {});
+      });
 
     phoneFocus.addListener(() {
       if (phoneFocus.hasFocus) {
@@ -81,7 +75,7 @@ class _BuildBodyState extends State<BuildBody>
   @override
   void dispose() {
     super.dispose();
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     bannerAd.dispose();
     interstitialAd.dispose();
   }
@@ -93,11 +87,27 @@ class _BuildBodyState extends State<BuildBody>
     }
   }
 
+  Future<void> loadBanner(BuildContext ctx) async {
+    final adSize =
+        await AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(
+            MediaQuery.of(ctx).size.width.toInt());
+    bannerAd = BannerAd(
+      adUnitId: Platform.isIOS ? AdID().bannerIOS : AdID().bannerAndroid,
+      size: adSize??AdSize.banner,
+      request: AdRequest(),
+      listener: BannerAdListener(
+        onAdFailedToLoad: (Ad ad, LoadAdError error) {
+          ad.dispose();
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if(animation.value==200.0){
+        if (animation.value == 200.0) {
           animationController.reverse();
         }
         phoneFocus.unfocus();
@@ -127,7 +137,7 @@ class _BuildBodyState extends State<BuildBody>
               style: TextStyle(
                 color: Platform.isIOS
                     ? CupertinoTheme.of(context).primaryContrastingColor
-                    : Theme.of(context).accentColor,
+                    : Theme.of(context).colorScheme.secondary,
                 fontSize: 18,
               ),
             ),
@@ -172,20 +182,20 @@ class _BuildBodyState extends State<BuildBody>
                         maxLines: 1,
                         decoration: InputDecoration(
                           labelText: 'Code',
-                          focusColor: Theme.of(context).accentColor,
+                          focusColor: Theme.of(context).colorScheme.secondary,
                           counter: Text(''),
-                          fillColor: Theme.of(context).accentColor,
+                          fillColor: Theme.of(context).colorScheme.secondary,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide(
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               width: 2,
                             ),
                           ),
                         ),
                         maxLength: 3,
                         keyboardType: TextInputType.phone,
-                        cursorColor: Theme.of(context).accentColor,
+                        cursorColor: Theme.of(context).colorScheme.secondary,
                         textInputAction: TextInputAction.next,
                         onSubmitted: (term) {
                           codeFocus.unfocus();
@@ -221,7 +231,7 @@ class _BuildBodyState extends State<BuildBody>
                         textInputAction: TextInputAction.done,
                         onSubmitted: (term) {
                           phoneFocus.unfocus();
-                          if(animation.value==200.0){
+                          if (animation.value == 200.0) {
                             animationController.reverse();
                           }
                         },
@@ -234,25 +244,25 @@ class _BuildBodyState extends State<BuildBody>
                         decoration: InputDecoration(
                           labelText: 'Number',
                           counter: Text(''),
-                          focusColor: Theme.of(context).accentColor,
+                          focusColor: Theme.of(context).colorScheme.secondary,
                           fillColor: Color.fromARGB(255, 57, 62, 70),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide(
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               width: 2,
                             ),
                           ),
                         ),
                         maxLength: 14,
                         keyboardType: TextInputType.phone,
-                        cursorColor: Theme.of(context).accentColor,
+                        cursorColor: Theme.of(context).colorScheme.secondary,
                         onEditingComplete: () =>
                             pasteCheck(controller, codeController),
                         textInputAction: TextInputAction.done,
                         onSubmitted: (term) {
                           phoneFocus.unfocus();
-                          if(animation.value==200.0){
+                          if (animation.value == 200.0) {
                             animationController.reverse();
                           }
                         },
@@ -288,7 +298,7 @@ class _BuildBodyState extends State<BuildBody>
                     Icons.send,
                     color: Colors.white,
                   ),
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   padding: EdgeInsets.all(15),
                   shape: CircleBorder(),
                 ),
@@ -298,13 +308,28 @@ class _BuildBodyState extends State<BuildBody>
           Expanded(
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                child: AdWidget(
-                  ad: bannerAd,
-                ),
-                height: 90,
-                width: MediaQuery.of(context).size.width,
-                alignment: Alignment.bottomCenter,
+              child: FutureBuilder(
+                future: loadBanner(context),
+                builder: (ctx, state) {
+                  if(state.connectionState == ConnectionState.done){
+                    bannerAd.load();
+                    return Container(
+                      child: AdWidget(
+                        ad: bannerAd,
+                      ),
+                      height: 90,
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.bottomCenter,
+                    );
+                  }else{
+                    return Container(
+                      child: const CircularProgressIndicator(),
+                      height: 40,
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.bottomCenter,
+                    );
+                  }
+                },
               ),
             ),
           ),
