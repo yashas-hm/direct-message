@@ -1,19 +1,45 @@
+import 'package:direct_message/core/constants/app_constants.dart';
+import 'package:direct_message/core/constants/app_theme.dart';
+import 'package:direct_message/core/utilities/extensions.dart';
+import 'package:direct_message/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
-
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-
-import 'Widgets/BuildApp.dart';
+import 'package:resize/resize.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
-  runApp(DirectMessage());
+  runApp(const DirectMessage());
 }
 
 class DirectMessage extends StatelessWidget {
+  const DirectMessage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return buildApp(context);
+    final currSize = Size(context.width, context.height);
+
+    Size size = const Size(410, 910);
+
+    if (currSize.aspectRatio < size.aspectRatio) {
+      size = currSize;
+    }
+
+    return Resize(
+      builder: () => ValueListenableBuilder(
+        valueListenable: themeMode,
+        builder: (_, theme, __) {
+          return MaterialApp(
+            navigatorKey: globalKey,
+            theme: CustomAppTheme(context).light,
+            darkTheme: CustomAppTheme(context).dark,
+            themeMode: theme,
+            debugShowCheckedModeBanner: false,
+            title: 'Direct Message',
+            home: const SplashScreen(),
+          );
+        }
+      ),
+      allowtextScaling: false,
+      size: size,
+    );
   }
 }
+

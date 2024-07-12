@@ -1,42 +1,47 @@
 name: direct_message
-description: Send whatsapp without saving number
-
+description: "Direct Message lets you send WhatsApp messages instantly by inputting a phone number, without the need to save contacts."
 publish_to: 'none'
-
-version: 1.0.3
+version: 2.0.0+6
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=3.4.3 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
-  url_launcher: ^6.1.4
-  google_mobile_ads: ^2.3.0
-  shared_preferences: ^2.0.15
+  # tools
+  resize: ^1.0.0
+  shared_preferences: ^2.2.3
+  flutter_svg: ^2.0.10+1
+  url_launcher: ^6.3.0
+  intl: ^0.19.0
+  share_plus: ^9.0.0
+  google_fonts: ^6.2.1
+
+  # widgets
+  gap: ^3.0.1
+  country_calling_code_picker: ^2.0.1
+  day_night_themed_switcher: ^1.1.0
+  google_mobile_ads: ^5.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  image_path: "assets/images/launcher_icon.png"
+  min_sdk_android: 21
+  ios: true
+  image_path_ios: "assets/images/launcher_icon.png"
+  remove_alpha_ios: true
+
 flutter:
   uses-material-design: true
 
   assets:
-    - assets/app_icon/app_logo.png
-
-  fonts:
-    - family: OpenSans
-      fonts:
-        - asset: assets/fonts/OpenSans-Regular.ttf
-        - asset: assets/fonts/OpenSans-Bold.ttf
-          weight: 700
-
-    - family: QuickSand
-      fonts:
-        - asset: assets/fonts/QuickSand-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/QuickSand-Medium.ttf
-          weight: 400
+    - assets/images/
