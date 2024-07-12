@@ -37,8 +37,8 @@ void pasteCheck() {
 }
 
 void openWhatsapp(final String phone, String code) async {
-  if (!code.contains('+')) {
-    code = '+$code';
+  if (code.contains('+')) {
+    code = code.replaceAll('+', '');
   }
   String url = "https://api.whatsapp.com/send?phone=$code$phone";
 
@@ -50,7 +50,6 @@ void openWhatsapp(final String phone, String code) async {
     );
   } else {
     showSnackBar('Some unexpected error occurred');
-    throw 'Cannot open $encoded';
   }
 }
 
@@ -67,9 +66,9 @@ void openerDetails() {
   }
 
   if (phone == '') {
-    showSnackBar('Enter Number');
+    showSnackBar('Number cannot be empty');
   } else if (phone.length < 10) {
-    showSnackBar('Invalid Number. Greater than 10 digits');
+    showSnackBar('Invalid Number');
   } else if (code == '') {
     showSnackBar('Enter Country Code');
   } else {
