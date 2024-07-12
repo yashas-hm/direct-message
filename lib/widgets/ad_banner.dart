@@ -51,7 +51,7 @@ class _BannerAdvertState extends State<BannerAdvert> {
       width: context.width,
       height: context.height / 15,
       child: isLoading == null
-          ? Container()
+          ? Container(color: Colors.black26,)
           : isLoading!
               ? Center(
                   child: CircularProgressIndicator.adaptive(

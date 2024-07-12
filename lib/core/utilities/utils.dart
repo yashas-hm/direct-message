@@ -2,6 +2,7 @@ import 'package:country_calling_code_picker/picker.dart';
 import 'package:direct_message/core/constants/app_constants.dart';
 import 'package:direct_message/core/utilities/extensions.dart';
 import 'package:direct_message/core/utilities/preference_utils.dart';
+import 'package:direct_message/core/utilities/snackbar_utils.dart';
 import 'package:direct_message/screens/open_wa_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -48,7 +49,7 @@ void openWhatsapp(final String phone, String code) async {
       mode: LaunchMode.externalApplication,
     );
   } else {
-    // showSnackBar(context, 'Some unexpected error occurred 0');
+    showSnackBar('Some unexpected error occurred');
     throw 'Cannot open $encoded';
   }
 }
@@ -60,16 +61,17 @@ void openerDetails() {
     if (countryCodeController.text[0] != '+') {
       code = countryCodeController.text;
     } else {
-      code = countryCodeController.text.substring(1, countryCodeController.text.length);
+      code = countryCodeController.text
+          .substring(1, countryCodeController.text.length);
     }
   }
 
   if (phone == '') {
-    // showSnackBar(context, 'Enter Number');
+    showSnackBar('Enter Number');
   } else if (phone.length < 10) {
-    // showSnackBar(context, 'Invalid Number. Greater than 10 digits');
+    showSnackBar('Invalid Number. Greater than 10 digits');
   } else if (code == '') {
-    // showSnackBar(context, 'Enter Country Code');
+    showSnackBar('Enter Country Code');
   } else {
     openWhatsapp(phone, code);
   }

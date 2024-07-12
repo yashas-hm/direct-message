@@ -1,7 +1,6 @@
 import 'package:direct_message/core/constants/app_constants.dart';
 import 'package:direct_message/core/utilities/extensions.dart';
 import 'package:direct_message/core/utilities/utils.dart';
-import 'package:direct_message/screens/open_wa_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
