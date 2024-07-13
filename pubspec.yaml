@@ -1,7 +1,7 @@
 name: direct_message
 description: "Direct Message lets you send WhatsApp messages instantly by inputting a phone number, without the need to save contacts."
 publish_to: 'none'
-version: 2.0.0+6
+version: 1.0.0+1
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
