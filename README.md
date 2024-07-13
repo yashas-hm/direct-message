@@ -5,6 +5,9 @@
 Welcome to **Direct Message**, the ultimate tool for sending WhatsApp messages instantly without the hassle of saving
 contacts!
 
+### Download
+[![store](https://github.com/pioug/google-play-badges/blob/main/svg/en.svg)](https://play.google.com/store/apps/details?id=dev.yashashm.directmessage)
+
 ### Features:
 
 - **Instant Messaging:** Quickly send WhatsApp messages to any phone number without adding it to your contacts list.
@@ -31,3 +34,4 @@ Stop cluttering your contact list with temporary numbers. Download **Direct Mess
 convenience of sending WhatsApp messages directly and effortlessly!
 
 **Note:** This app is not affiliated with or endorsed by WhatsApp Inc.
+
