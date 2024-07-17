@@ -43,5 +43,6 @@ app.*.map.json
 /android/app/release
 
 /lib/secrets.dart
-/android/key.properties
 *.jsk
+/android*
+/ios*
