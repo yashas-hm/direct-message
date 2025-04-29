@@ -37,8 +37,9 @@ jobs:
       - name: Prepare Flutter Web
         run: |
           flutter pub remove country_calling_code_picker google_mobile_ads 
-          rm -f lib/screens/app/open_wa_screen.dart
+          cp -f lib/screens/web/wa.dart lib/screens/app/open_wa_screen.dart
           cp -f lib/screens/web/splash.dart lib/screens/app/splash_screen.dart
+          rm -f lib/screens/app/open_wa_screen.dart
           rm -f lib/screens/web/splash.dart
           
       - name: Build Web     
