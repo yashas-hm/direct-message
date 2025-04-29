@@ -3,14 +3,13 @@ import 'package:direct_message/core/constants/app_constants.dart';
 import 'package:direct_message/core/utilities/extensions.dart';
 import 'package:direct_message/core/utilities/preference_utils.dart';
 import 'package:direct_message/core/utilities/snackbar_utils.dart';
-import 'package:direct_message/screens/open_wa_screen.dart';
+import 'package:direct_message/screens/app/open_wa_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Future<void> initApp(BuildContext context) async {
-  WidgetsFlutterBinding.ensureInitialized();
-
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -26,6 +25,25 @@ Future<void> initApp(BuildContext context) async {
       const OpenWaScreen(),
     );
   }
+}
+
+Size getAppDimensions(BuildContext context) {
+  Size size = const Size(410, 910);
+
+  if (kIsWeb) {
+    if (context.isMobile) {
+      size = const Size(410, 910);
+    } else {
+      size = const Size(1728, 1000);
+    }
+  } else {
+    final currSize = Size(context.width, context.height);
+    if (currSize.aspectRatio < size.aspectRatio) {
+      size = currSize;
+    }
+  }
+
+  return size;
 }
 
 void pasteCheck() {

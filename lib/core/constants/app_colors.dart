@@ -10,9 +10,9 @@ const Color bgDark = Color(0xFF151515);
 
 const Color darkElement = Color(0xFF2A2A2A);
 
-const Color bgLight = Color(0xFFF1F1F1);
+const Color bgLight = Color(0xFFFCFCFC);
 
-const Color lightElement = Color(0xFFE0DEDE);
+const Color lightElement = Color(0xFFF6F6F6);
 
 Color get backgroundColor => Theme.of(globalContext).scaffoldBackgroundColor;
 

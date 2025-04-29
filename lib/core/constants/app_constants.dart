@@ -6,7 +6,8 @@ final TextEditingController countryCodeController = TextEditingController();
 
 final GlobalKey<NavigatorState> globalKey = GlobalKey();
 
-final ValueNotifier<ThemeMode> themeMode = ValueNotifier<ThemeMode>(ThemeMode.system);
+final ValueNotifier<ThemeMode> themeMode =
+    ValueNotifier<ThemeMode>(ThemeMode.system);
 
 const String darkModePrefTag = 'darkMode';
 

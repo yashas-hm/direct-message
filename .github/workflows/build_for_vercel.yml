@@ -1,0 +1,82 @@
+name: Build and Deploy Flutter Web to Vercel Repo
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'lib/screens/web/**'
+      - 'lib/core/constants/app_colors.dart'
+      - 'web/**'
+      - 'vercel/vercel.json'
+      - 'vercel/.vercelignore'
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Flutter Setup
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Flutter Version
+        run: flutter --version
+
+      - name: Enable Web
+        run: flutter config --enable-web
+
+      - name: Get Flutter Dependencies
+        run: flutter pub get
+
+      - name: Build Flutter Web
+        run: flutter build web -t lib/main_web.dart
+
+      - name: Prepare Build Artifact
+        run: |
+          mkdir web_build
+          cp -rf build/web/. web_build
+          cp -f vercel/.vercelignore web_build
+          cp -f vercel/vercel.json web_build
+
+      - name: Create Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-web-build
+          path: web_build
+          retention-days: 1
+
+  deploy:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git Setup
+        run: |
+          git config --global user.email yashashm.dev@gmail.com
+          git config --global user.name yashas-hm
+          git clone https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/yashas-hm/vercel-direct-message-website.git
+          cp -rf vercel-direct-message-website/. .
+          rm -r vercel-direct-message-website/
+          git remote remove origin
+          git remote add origin https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/yashas-hm/vercel-direct-message-website.git
+          cd ..
+
+      - name: Get Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: flutter-web-build
+          path: build/
+
+      - name: Push to Server Branch
+        run: |
+          cp -rf build/. .
+          rm -r build/
+          git add .
+          git commit -m "Workflow Deploy"
+          git push --set-upstream origin main

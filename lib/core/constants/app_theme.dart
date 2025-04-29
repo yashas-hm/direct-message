@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resize/resize.dart';
+
 class CustomAppTheme {
   CustomAppTheme(this.context);
 
@@ -44,7 +45,7 @@ class CustomAppTheme {
         textSelectionTheme: TextSelectionThemeData(
           selectionHandleColor: blueLight,
           cursorColor: darkElement,
-          selectionColor: blueLight.withOpacity(0.3),
+          selectionColor: blueLight.withValues(alpha: 0.3),
         ),
       );
 
@@ -84,7 +85,7 @@ class CustomAppTheme {
         textSelectionTheme: TextSelectionThemeData(
           selectionHandleColor: blueDark,
           cursorColor: lightElement,
-          selectionColor: blueDark.withOpacity(0.3),
+          selectionColor: blueDark.withValues(alpha: 0.3),
         ),
       );
 }

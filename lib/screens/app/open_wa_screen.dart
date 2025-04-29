@@ -132,7 +132,7 @@ class _OpenWaScreenState extends State<OpenWaScreen>
                     controller: countryCodeController,
                     textAlignVertical: TextAlignVertical.center,
                     maxLines: 1,
-                    onTap: ()=>countryCodePicker(context),
+                    onTap: () => countryCodePicker(context),
                     decoration: InputDecoration(
                       labelText: 'Code',
                       focusColor: Theme.of(context).colorScheme.secondary,
@@ -180,8 +180,8 @@ class _OpenWaScreenState extends State<OpenWaScreen>
                       maxLength: 14,
                       keyboardType: TextInputType.phone,
                       cursorColor: Theme.of(context).colorScheme.secondary,
-                      onChanged: (value){
-                        if(value.length-1==phoneLength){
+                      onChanged: (value) {
+                        if (value.length - 1 == phoneLength) {
                           pasteCheck();
                         }
                         phoneLength = value.length;
