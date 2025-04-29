@@ -23,7 +23,7 @@ class DirectMessageApp extends StatelessWidget {
               themeMode: theme,
               debugShowCheckedModeBanner: false,
               title: 'Direct Message',
-              home: kIsWeb?const Homepage():const SplashScreen(),
+              home: kIsWeb ? const Homepage() : const SplashScreen(),
             );
           },
         ),

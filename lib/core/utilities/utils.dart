@@ -1,4 +1,3 @@
-import 'package:country_calling_code_picker/picker.dart';
 import 'package:direct_message/core/constants/app_constants.dart';
 import 'package:direct_message/core/utilities/extensions.dart';
 import 'package:direct_message/core/utilities/preference_utils.dart';
@@ -135,16 +134,6 @@ void toggleTheme(BuildContext context) {
 
   setIsDarkModePref(isDark);
   themeMode.value = newTheme;
-}
-
-void countryCodePicker(BuildContext context) async {
-  final country = await showCountryPickerSheet(
-    context,
-  );
-  if (country != null) {
-    countryCodeController.text = country.callingCode;
-    setCountryCode(country.callingCode);
-  }
 }
 
 PageRouteBuilder pageRouteBuilder(Widget page) => PageRouteBuilder(

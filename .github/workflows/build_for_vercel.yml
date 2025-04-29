@@ -5,6 +5,7 @@ on:
     branches:
       - master
     paths:
+      - '.github/**'
       - 'lib/screens/web/**'
       - 'lib/core/constants/app_colors.dart'
       - 'web/**'
@@ -33,12 +34,15 @@ jobs:
       - name: Get Flutter Dependencies
         run: flutter pub get
 
-      - name: Build Flutter Web
+      - name: Prepare Flutter Web
         run: |
-          echo "const androidBannerAdID = '';" > lib/secrets.dart
-          echo "const iOSBannerAdId = '';" >> lib/secrets.dart
-          echo "const androidInterstitialAdId = '';" >> lib/secrets.dart
-          echo "const iOSInterstitialAdId = '';" >> lib/secrets.dart
+          flutter pub remove country_calling_code_picker google_mobile_ads 
+          rm -f lib/screens/app/open_wa_screen.dart
+          cp -f lib/screens/web/splash.dart lib/screens/app/splash_screen.dart
+          rm -f lib/screens/web/splash.dart
+          
+      - name: Build Web     
+        run: |
           flutter build web -t lib/main_web.dart
 
       - name: Prepare Build Artifact
