@@ -34,7 +34,12 @@ jobs:
         run: flutter pub get
 
       - name: Build Flutter Web
-        run: flutter build web -t lib/main_web.dart
+        run: |
+          echo "const androidBannerAdID = '';" > lib/secrets.dart
+          echo "const iOSBannerAdId = '';" >> lib/secrets.dart
+          echo "const androidInterstitialAdId = '';" >> lib/secrets.dart
+          echo "const iOSInterstitialAdId = '';" >> lib/secrets.dart
+          flutter build web -t lib/main_web.dart
 
       - name: Prepare Build Artifact
         run: |
