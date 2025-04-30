@@ -25,6 +25,7 @@ dependencies:
   day_night_themed_switcher: ^2.0.0
   google_mobile_ads: ^6.0.0
   country_calling_code_picker_plus: ^1.0.1
+  lava_lamp_effect: 1.0.2
 
 dev_dependencies:
   flutter_test:

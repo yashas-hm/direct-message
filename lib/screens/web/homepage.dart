@@ -1,11 +1,11 @@
 import 'dart:math' as math;
 
 import 'package:day_night_themed_switcher/day_night_themed_switcher.dart';
+import 'package:lava_lamp_effect/lava_lamp_effect.dart';
 import 'package:direct_message/core/constants/app_colors.dart';
 import 'package:direct_message/core/constants/app_constants.dart';
 import 'package:direct_message/core/utilities/extensions.dart';
 import 'package:direct_message/core/utilities/utils.dart';
-import 'package:direct_message/widgets/lava.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -85,7 +85,7 @@ class _HomePortraitState extends State<HomePortrait>
               width: context.width,
               height: context.height * .9,
               color: Theme.of(context).primaryColor,
-              child: ChatPrompterAnimation(
+              child: LavaLampEffect(
                 size: Size(context.width, context.height * .9),
                 lavaCount: 5,
                 color: bgLight.withValues(alpha: 0.8),
@@ -353,7 +353,7 @@ class _HomeLandscapeState extends State<HomeLandscape>
               width: context.width,
               height: context.height * .9,
               color: Theme.of(context).primaryColor,
-              child: ChatPrompterAnimation(
+              child: LavaLampEffect(
                 size: Size(context.width, context.height * .9),
                 lavaCount: 5,
                 color: bgLight.withValues(alpha: 0.8),

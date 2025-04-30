@@ -240,6 +240,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.9.0"
+  lava_lamp_effect:
+    dependency: "direct main"
+    description:
+      name: lava_lamp_effect
+      sha256: c0b2b814bda6ddf398680d23e5b3f04a1128d4db9dc80da43534e22d612d745a
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   leak_tracker:
     dependency: transitive
     description:
@@ -694,5 +702,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.7.0 <4.0.0"
+  dart: ">=3.7.2 <4.0.0"
   flutter: ">=3.27.0"
