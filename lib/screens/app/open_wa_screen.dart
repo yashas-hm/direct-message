@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:country_calling_code_picker/functions.dart';
+import 'package:country_calling_code_picker_plus/country_calling_code_picker_plus.dart';
 import 'package:day_night_themed_switcher/day_night_themed_switcher.dart';
 import 'package:direct_message/core/constants/app_colors.dart';
 import 'package:direct_message/core/constants/app_constants.dart';
