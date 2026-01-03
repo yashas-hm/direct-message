@@ -47,9 +47,9 @@ jobs:
 
       - name: Prepare Build Artifact
         run: |
-          mkdir web_build
-          cp -rf build/web/. web_build
-          cp -rf vercel/. web_build
+          mkdir vercel_build
+          cp -rf build/web/. vercel_build
+          cp -rf vercel/. vercel_build
           
       - name: Deploy on Vercel
         uses: amondnet/vercel-action@v41.1.4
