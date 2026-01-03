@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:day_night_themed_switcher/day_night_themed_switcher.dart';
-import 'package:lava_lamp_effect/lava_lamp_effect.dart';
 import 'package:direct_message/core/constants/app_colors.dart';
 import 'package:direct_message/core/constants/app_constants.dart';
 import 'package:direct_message/core/utilities/extensions.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:lava_lamp_effect/lava_lamp_effect.dart';
 import 'package:resize/resize.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -128,7 +128,8 @@ class _HomePortraitState extends State<HomePortrait>
                         child: Transform.rotate(
                           angle: math.pi / 15,
                           child: Transform.translate(
-                            offset: Offset(context.width / 6, context.width / 4),
+                            offset:
+                                Offset(context.width / 6, context.width / 4),
                             child: Image.asset(
                               'assets/images/code.png',
                               width: context.width / 2.5,

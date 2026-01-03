@@ -37,6 +37,9 @@ jobs:
       - name: Prepare Flutter Web
         run: |
           flutter pub remove country_calling_code_kit google_mobile_ads 
+          rm -rf lib/screens/app
+          rm -rf lib/widgets
+          rm -r lib/main_app.dart
           
       - name: Build Web     
         run: |

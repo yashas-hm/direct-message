@@ -2,29 +2,9 @@ import 'package:direct_message/core/constants/app_constants.dart';
 import 'package:direct_message/core/utilities/extensions.dart';
 import 'package:direct_message/core/utilities/preference_utils.dart';
 import 'package:direct_message/core/utilities/snackbar_utils.dart';
-import 'package:direct_message/screens/app/open_wa_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-Future<void> initApp(BuildContext context) async {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
-
-  await checkDarkMode(context);
-
-  countryCodeController.text = await getCountryCode ?? '';
-
-  if (context.mounted) {
-    navigateOff(
-      context,
-      const OpenWaScreen(),
-    );
-  }
-}
 
 Size getAppDimensions(BuildContext context) {
   Size size = const Size(410, 910);
