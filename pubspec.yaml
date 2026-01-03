@@ -24,7 +24,7 @@ dependencies:
   gap: ^3.0.1
   day_night_themed_switcher: ^2.0.0
   google_mobile_ads: ^6.0.0
-  country_calling_code_picker_plus: ^1.0.1
+  country_calling_code_kit: ^1.1.0
   lava_lamp_effect: 1.0.2
 
 dev_dependencies:

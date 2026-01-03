@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:country_calling_code_picker_plus/country_calling_code_picker_plus.dart';
+import 'package:country_calling_code_kit/country_calling_code_kit.dart';
 import 'package:day_night_themed_switcher/day_night_themed_switcher.dart';
 import 'package:direct_message/core/constants/app_colors.dart';
 import 'package:direct_message/core/constants/app_constants.dart';
@@ -224,12 +224,14 @@ class _OpenWaScreenState extends State<OpenWaScreen>
   }
 
   void countryCodePicker(BuildContext context) async {
-    final country = await showCountryPickerSheet(
-      context,
+    final country = await showCountryPickerModalSheet(
+      context: context,
+      splashColor: blue.withValues(alpha: 0.3),
+      flagCornerRadius: 5.sp,
     );
     if (country != null) {
-      countryCodeController.text = country.callingCode;
-      setCountryCode(country.callingCode);
+      countryCodeController.text = country.callCode;
+      setCountryCode(country.callCode);
     }
   }
 }
