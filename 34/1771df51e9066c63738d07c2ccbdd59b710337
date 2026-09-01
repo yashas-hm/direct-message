@@ -1,0 +1,52 @@
+lib/main_app.dart
+  h_489c0496f9f57d 8
+lib/screens/web/homepage.dart
+  h_489c0496f9f57d 59-60,129,181,191,210,232,295-296,318-319,415,428,442,478,481,509,574-575,627,633,635
+  h_489c0496f9f57d 114-123,127-128,130,140-149,180,192,233,289,372-381,429,449-458,510,568
+vercel/vercel.json
+  h_489c0496f9f57d 4-6
+  h_489c0496f9f57d 7
+lib/screens/app/splash_screen.dart
+  h_489c0496f9f57d 32,62,79
+  h_489c0496f9f57d 66-75
+lib/widgets/ad_banner.dart
+  h_489c0496f9f57d 54,58,63
+  h_489c0496f9f57d 56-57,59-62,64
+lib/core/constants/app_theme.dart
+  h_489c0496f9f57d 17,27,29,50,60,62
+  h_489c0496f9f57d 13-16,18-26,28,30-43,46-49,51-59,61,63-76
+lib/core/utilities/snackbar_utils.dart
+  h_489c0496f9f57d 10,13,19
+lib/core/constants/app_constants.dart
+  h_489c0496f9f57d 10
+  h_489c0496f9f57d 9,11
+pubspec.yaml
+  h_489c0496f9f57d 4,7,17-21,25-28,34-35
+lib/screens/app/open_wa_screen.dart
+  h_489c0496f9f57d 115,119,159,193,200,202
+  h_489c0496f9f57d 114,116
+README.md
+  h_489c0496f9f57d 1
+lib/core/utilities/utils.dart
+  h_489c0496f9f57d 36,44,59,124-125,133-134,136-137,139-140
+  h_489c0496f9f57d 57-58,60,119-123,126-132,135,138
+lib/main_web.dart
+  h_489c0496f9f57d 10
+analysis_options.yaml
+  h_489c0496f9f57d 10-18
+lib/app.dart
+  h_489c0496f9f57d 15-31
+web/app-ads.txt
+  h_489c0496f9f57d 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "341771df51e9066c63738d07c2ccbdd59b710337",
+  "prompts": {},
+  "humans": {
+    "h_489c0496f9f57d": {
+      "author": "Yashas H Majmudar <yashashm.dev@gmail.com>"
+    }
+  }
+}
