@@ -56,13 +56,8 @@ class _HomePortraitState extends State<HomePortrait>
 
   @override
   void initState() {
-    animCtr = AnimationController(
-      vsync: this,
-      duration: 1000.milliseconds,
-    );
-    SchedulerBinding.instance.addPostFrameCallback(
-      (_) => animCtr.forward(),
-    );
+    animCtr = AnimationController(vsync: this, duration: 1000.milliseconds);
+    SchedulerBinding.instance.addPostFrameCallback((_) => animCtr.forward());
     super.initState();
   }
 
@@ -116,20 +111,23 @@ class _HomePortraitState extends State<HomePortrait>
                   Stack(
                     children: [
                       SlideTransition(
-                        position: Tween<Offset>(
-                          begin: Offset(1, 0),
-                          end: Offset.zero,
-                        ).animate(
-                          CurvedAnimation(
-                            parent: animCtr,
-                            curve: Curves.easeOut,
-                          ),
-                        ),
+                        position:
+                            Tween<Offset>(
+                              begin: Offset(1, 0),
+                              end: Offset.zero,
+                            ).animate(
+                              CurvedAnimation(
+                                parent: animCtr,
+                                curve: Curves.easeOut,
+                              ),
+                            ),
                         child: Transform.rotate(
                           angle: math.pi / 15,
                           child: Transform.translate(
-                            offset:
-                                Offset(context.width / 6, context.width / 4),
+                            offset: Offset(
+                              context.width / 6,
+                              context.width / 4,
+                            ),
                             child: Image.asset(
                               'assets/images/code.png',
                               width: context.width / 2.5,
@@ -139,15 +137,16 @@ class _HomePortraitState extends State<HomePortrait>
                         ),
                       ),
                       SlideTransition(
-                        position: Tween<Offset>(
-                          begin: Offset(-1, 0),
-                          end: Offset.zero,
-                        ).animate(
-                          CurvedAnimation(
-                            parent: animCtr,
-                            curve: Curves.easeOut,
-                          ),
-                        ),
+                        position:
+                            Tween<Offset>(
+                              begin: Offset(-1, 0),
+                              end: Offset.zero,
+                            ).animate(
+                              CurvedAnimation(
+                                parent: animCtr,
+                                curve: Curves.easeOut,
+                              ),
+                            ),
                         child: Transform.rotate(
                           angle: -math.pi / 15,
                           child: Transform.translate(
@@ -178,12 +177,8 @@ class _HomePortraitState extends State<HomePortrait>
                               ),
                             ),
                             TextSpan(
-                              text:
-                                  '\nMessage Anyone. Instantly. No Contacts Needed.',
-                              style: TextStyle(
-                                fontSize: 18.sp,
-                                color: bgDark,
-                              ),
+                              text: '\nMessage Anyone. Instantly. No Contacts Needed.',
+                              style: TextStyle(fontSize: 18.sp, color: bgDark),
                             ),
                           ],
                         ),
@@ -193,7 +188,8 @@ class _HomePortraitState extends State<HomePortrait>
                   GestureDetector(
                     onTap: () async {
                       final url = Uri.parse(
-                          'https://play.google.com/store/apps/details?id=dev.yashashm.directmessage');
+                        'https://play.google.com/store/apps/details?id=dev.yashashm.directmessage',
+                      );
                       if (await canLaunchUrl(url)) {
                         launchUrl(url);
                       }
@@ -211,10 +207,7 @@ class _HomePortraitState extends State<HomePortrait>
         ),
         Text(
           'Why Direct Message?',
-          style: TextStyle(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
         ),
         ...children(context),
         Row(
@@ -236,7 +229,8 @@ class _HomePortraitState extends State<HomePortrait>
                 GestureDetector(
                   onTap: () async {
                     final url = Uri.parse(
-                        'https://play.google.com/store/apps/details?id=dev.yashashm.directmessage');
+                      'https://play.google.com/store/apps/details?id=dev.yashashm.directmessage',
+                    );
                     if (await canLaunchUrl(url)) {
                       launchUrl(url);
                     }
@@ -292,18 +286,14 @@ class _HomePortraitState extends State<HomePortrait>
                 'Not affiliated with WhatsApp by Meta',
                 style: TextStyle(
                   fontSize: 12.sp,
-                  color: Theme.of(context)
-                      .colorScheme
-                      .tertiary
+                  color: Theme.of(context).colorScheme.tertiary
                       .withValues(alpha: 0.5),
                 ),
               ),
               Text(
                 'Built with ❤️ by Yashas H Majmudar',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
-              )
+                style: TextStyle(fontSize: 14.sp),
+              ),
             ],
           ),
         ),
@@ -325,13 +315,8 @@ class _HomeLandscapeState extends State<HomeLandscape>
 
   @override
   void initState() {
-    animCtr = AnimationController(
-      vsync: this,
-      duration: 1000.milliseconds,
-    );
-    SchedulerBinding.instance.addPostFrameCallback(
-      (_) => animCtr.forward(),
-    );
+    animCtr = AnimationController(vsync: this, duration: 1000.milliseconds);
+    SchedulerBinding.instance.addPostFrameCallback((_) => animCtr.forward());
     super.initState();
   }
 
@@ -384,15 +369,16 @@ class _HomeLandscapeState extends State<HomeLandscape>
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   SlideTransition(
-                    position: Tween<Offset>(
-                      begin: Offset(2, 0),
-                      end: Offset.zero,
-                    ).animate(
-                      CurvedAnimation(
-                        parent: animCtr,
-                        curve: Curves.easeOut,
-                      ),
-                    ),
+                    position:
+                        Tween<Offset>(
+                          begin: Offset(2, 0),
+                          end: Offset.zero,
+                        ).animate(
+                          CurvedAnimation(
+                            parent: animCtr,
+                            curve: Curves.easeOut,
+                          ),
+                        ),
                     child: Transform.translate(
                       offset: Offset(80, 0),
                       child: Transform.rotate(
@@ -426,10 +412,7 @@ class _HomeLandscapeState extends State<HomeLandscape>
                             ),
                             Text(
                               'Message Anyone. Instantly. No Contacts Needed.',
-                              style: TextStyle(
-                                fontSize: 30.sp,
-                                color: bgDark,
-                              ),
+                              style: TextStyle(fontSize: 30.sp, color: bgDark),
                             ),
                             Gap(40.sp),
                             Row(
@@ -442,7 +425,8 @@ class _HomeLandscapeState extends State<HomeLandscape>
                                   child: GestureDetector(
                                     onTap: () async {
                                       final url = Uri.parse(
-                                          'https://play.google.com/store/apps/details?id=dev.yashashm.directmessage');
+                                        'https://play.google.com/store/apps/details?id=dev.yashashm.directmessage',
+                                      );
                                       if (await canLaunchUrl(url)) {
                                         launchUrl(url);
                                       }
@@ -455,22 +439,23 @@ class _HomeLandscapeState extends State<HomeLandscape>
                                   ),
                                 ),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ),
                     ),
                   ),
                   SlideTransition(
-                    position: Tween<Offset>(
-                      begin: Offset(-2, 0),
-                      end: Offset.zero,
-                    ).animate(
-                      CurvedAnimation(
-                        parent: animCtr,
-                        curve: Curves.easeOut,
-                      ),
-                    ),
+                    position:
+                        Tween<Offset>(
+                          begin: Offset(-2, 0),
+                          end: Offset.zero,
+                        ).animate(
+                          CurvedAnimation(
+                            parent: animCtr,
+                            curve: Curves.easeOut,
+                          ),
+                        ),
                     child: Transform.translate(
                       offset: Offset(-80, 0),
                       child: Transform.rotate(
@@ -490,15 +475,10 @@ class _HomeLandscapeState extends State<HomeLandscape>
         ),
         Text(
           'Why Direct Message?',
-          style: TextStyle(
-            fontSize: 30.sp,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(fontSize: 30.sp, fontWeight: FontWeight.bold),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 30.sp,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 30.sp),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -526,7 +506,8 @@ class _HomeLandscapeState extends State<HomeLandscape>
                   child: GestureDetector(
                     onTap: () async {
                       final url = Uri.parse(
-                          'https://play.google.com/store/apps/details?id=dev.yashashm.directmessage');
+                        'https://play.google.com/store/apps/details?id=dev.yashashm.directmessage',
+                      );
                       if (await canLaunchUrl(url)) {
                         launchUrl(url);
                       }
@@ -584,18 +565,14 @@ class _HomeLandscapeState extends State<HomeLandscape>
                 'Not affiliated with WhatsApp by Meta',
                 style: TextStyle(
                   fontSize: 14.sp,
-                  color: Theme.of(context)
-                      .colorScheme
-                      .tertiary
+                  color: Theme.of(context).colorScheme.tertiary
                       .withValues(alpha: 0.5),
                 ),
               ),
               Text(
                 'Built with ❤️ by Yashas H Majmudar',
-                style: TextStyle(
-                  fontSize: 18.sp,
-                ),
-              )
+                style: TextStyle(fontSize: 18.sp),
+              ),
             ],
           ),
         ),
@@ -647,23 +624,15 @@ List<Widget> children(BuildContext context) {
           Text(
             texts[index],
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: context.isMobile ? 14.sp : 18.sp,
-            ),
+            style: TextStyle(fontSize: context.isMobile ? 14.sp : 18.sp),
           ),
         ],
       ),
     );
     if (context.isMobile) {
-      list.add(
-        container,
-      );
+      list.add(container);
     } else {
-      list.add(
-        Expanded(
-          child: container,
-        ),
-      );
+      list.add(Expanded(child: container));
     }
   }
 

@@ -29,10 +29,7 @@ class _SplashScreenState extends State<SplashScreen>
     countryCodeController.text = await getCountryCode ?? '';
 
     if (context.mounted) {
-      navigateOff(
-        context,
-        const OpenWaScreen(),
-      );
+      navigateOff(context, const OpenWaScreen());
     }
   }
 
@@ -62,30 +59,24 @@ class _SplashScreenState extends State<SplashScreen>
           scale: Tween<double>(begin: 0, end: 1).animate(
             CurvedAnimation(
               parent: animController,
-              curve: const Interval(
-                0.3,
-                0.8,
-                curve: Curves.easeIn,
-              ),
+              curve: const Interval(0.3, 0.8, curve: Curves.easeIn),
             ),
           ),
           child: SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(-3, 5),
-              end: Offset.zero,
-            ).animate(
-              CurvedAnimation(
-                parent: animController,
-                curve: Curves.bounceIn,
-              ),
-            ),
+            position:
+                Tween<Offset>(
+                  begin: const Offset(-3, 5),
+                  end: Offset.zero,
+                ).animate(
+                  CurvedAnimation(
+                    parent: animController,
+                    curve: Curves.bounceIn,
+                  ),
+                ),
             child: SvgPicture.asset(
               appLogo,
               height: context.width / 2.5,
-              colorFilter: const ColorFilter.mode(
-                Colors.blue,
-                BlendMode.srcIn,
-              ),
+              colorFilter: const ColorFilter.mode(Colors.blue, BlendMode.srcIn),
             ),
           ),
         ),

@@ -5,7 +5,5 @@ import 'app.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const DirectMessageApp(
-    child: SplashScreen(),
-  ));
+  runApp(const DirectMessageApp(child: SplashScreen()));
 }

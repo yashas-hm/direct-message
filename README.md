@@ -1,4 +1,4 @@
-![Direct Message](./github_assets/featured.png)
+![Direct Message](.gitassets/featured.png)
 
 # [Website](https://directmessage.yashashm.dev)
 

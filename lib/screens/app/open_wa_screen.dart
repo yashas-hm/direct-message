@@ -111,14 +111,12 @@ class _OpenWaScreenState extends State<OpenWaScreen>
             Flexible(
               child: ConstrainedBox(
                 constraints: BoxConstraints(
-                    maxHeight: context.height / 2.5,
-                    minHeight: context.height / 5.5),
+                  maxHeight: context.height / 2.5,
+                  minHeight: context.height / 5.5,
+                ),
                 child: SvgPicture.asset(
                   appLogo,
-                  colorFilter: ColorFilter.mode(
-                    blue,
-                    BlendMode.srcIn,
-                  ),
+                  colorFilter: ColorFilter.mode(blue, BlendMode.srcIn),
                 ),
               ),
             ),
@@ -158,10 +156,7 @@ class _OpenWaScreenState extends State<OpenWaScreen>
                   child: Container(
                     height: 60.sp,
                     alignment: Alignment.centerLeft,
-                    margin: EdgeInsets.only(
-                      right: 20.sp,
-                      left: 10.sp,
-                    ),
+                    margin: EdgeInsets.only(right: 20.sp, left: 10.sp),
                     child: TextField(
                       controller: phoneController,
                       textAlignVertical: TextAlignVertical.center,
@@ -195,24 +190,16 @@ class _OpenWaScreenState extends State<OpenWaScreen>
               ],
             ),
             Gap(30.sp),
-            Expanded(
-              child: Container(),
-            ),
+            Expanded(child: Container()),
             Gap(30.sp),
             GestureDetector(
               onTap: openerDetails,
               child: Container(
                 height: 60.sp,
                 width: 60.sp,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: blue,
-                ),
+                decoration: BoxDecoration(shape: BoxShape.circle, color: blue),
                 alignment: Alignment.center,
-                child: const Icon(
-                  Icons.send,
-                  color: bgLight,
-                ),
+                child: const Icon(Icons.send, color: bgLight),
               ),
             ),
             Gap(30.sp),

@@ -7,25 +7,16 @@ import 'package:resize/resize.dart';
 void showSnackBar(String message) =>
     ScaffoldMessenger.of(globalContext).showSnackBar(
       SnackBar(
-        padding: EdgeInsets.symmetric(
-          horizontal: 15.sp,
-          vertical: 5.sp,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 15.sp, vertical: 5.sp),
         dismissDirection: DismissDirection.vertical,
         content: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: 40.sp,
-          ),
+          constraints: BoxConstraints(minHeight: 40.sp),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Icon(
-                Icons.close,
-                size: 25.sp,
-                color: Colors.redAccent,
-              ),
+              Icon(Icons.close, size: 25.sp, color: Colors.redAccent),
               Gap(15.sp),
               Expanded(
                 child: Text(

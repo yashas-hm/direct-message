@@ -12,21 +12,21 @@ class DirectMessageApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Resize(
-        builder: () => ValueListenableBuilder(
-          valueListenable: themeMode,
-          builder: (_, theme, __) {
-            return MaterialApp(
-              navigatorKey: globalKey,
-              theme: CustomAppTheme(context).light,
-              darkTheme: CustomAppTheme(context).dark,
-              themeMode: theme,
-              debugShowCheckedModeBanner: false,
-              title: 'Direct Message',
-              home: child,
-            );
-          },
-        ),
-        allowtextScaling: false,
-        size: getAppDimensions(context),
-      );
+    builder: () => ValueListenableBuilder(
+      valueListenable: themeMode,
+      builder: (_, theme, __) {
+        return MaterialApp(
+          navigatorKey: globalKey,
+          theme: CustomAppTheme(context).light,
+          darkTheme: CustomAppTheme(context).dark,
+          themeMode: theme,
+          debugShowCheckedModeBanner: false,
+          title: 'Direct Message',
+          home: child,
+        );
+      },
+    ),
+    allowtextScaling: false,
+    size: getAppDimensions(context),
+  );
 }

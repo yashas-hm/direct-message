@@ -7,7 +7,5 @@ import 'app.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
-  runApp(const DirectMessageApp(
-    child: Homepage(),
-  ));
+  runApp(const DirectMessageApp(child: Homepage()));
 }

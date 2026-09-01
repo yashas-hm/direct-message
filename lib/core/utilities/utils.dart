@@ -33,7 +33,7 @@ void pasteCheck() {
   }
 }
 
-void openWhatsapp(final String phone, String code) async {
+void openWhatsapp(String phone, String code) async {
   if (code.contains('+')) {
     code = code.replaceAll('+', '');
   }
@@ -41,10 +41,7 @@ void openWhatsapp(final String phone, String code) async {
 
   final Uri encoded = Uri.parse(url);
   if (await canLaunchUrl(encoded)) {
-    await launchUrl(
-      encoded,
-      mode: LaunchMode.externalApplication,
-    );
+    await launchUrl(encoded, mode: LaunchMode.externalApplication);
   } else {
     showSnackBar('Some unexpected error occurred');
   }
@@ -57,8 +54,10 @@ void openerDetails() {
     if (countryCodeController.text[0] != '+') {
       code = countryCodeController.text;
     } else {
-      code = countryCodeController.text
-          .substring(1, countryCodeController.text.length);
+      code = countryCodeController.text.substring(
+        1,
+        countryCodeController.text.length,
+      );
     }
   }
 
@@ -117,47 +116,27 @@ void toggleTheme(BuildContext context) {
 }
 
 PageRouteBuilder pageRouteBuilder(Widget page) => PageRouteBuilder(
-      pageBuilder: (_, __, ___) => page,
-      transitionsBuilder: (_, animation, __, child) => FadeTransition(
-        opacity: animation.drive(
-          Tween<double>(begin: 0, end: 1).chain(
-            CurveTween(
-              curve: Curves.easeInOut,
-            ),
-          ),
-        ),
-        child: child,
-      ),
-      transitionDuration: 600.milliseconds,
-      reverseTransitionDuration: 600.milliseconds,
-    );
+  pageBuilder: (_, __, ___) => page,
+  transitionsBuilder: (_, animation, __, child) => FadeTransition(
+    opacity: animation.drive(
+      Tween<double>(
+        begin: 0,
+        end: 1,
+      ).chain(CurveTween(curve: Curves.easeInOut)),
+    ),
+    child: child,
+  ),
+  transitionDuration: 600.milliseconds,
+  reverseTransitionDuration: 600.milliseconds,
+);
 
-void navigateTo(
-  BuildContext context,
-  Widget page,
-) =>
-    Navigator.push(
-      context,
-      pageRouteBuilder(page),
-    );
+void navigateTo(BuildContext context, Widget page) =>
+    Navigator.push(context, pageRouteBuilder(page));
 
-void navigateOffAll(
-  BuildContext context,
-  Widget page,
-) =>
-    Navigator.pushAndRemoveUntil(
-      context,
-      pageRouteBuilder(page),
-      (_) => false,
-    );
+void navigateOffAll(BuildContext context, Widget page) =>
+    Navigator.pushAndRemoveUntil(context, pageRouteBuilder(page), (_) => false);
 
-void navigateOff(
-  BuildContext context,
-  Widget page,
-) =>
-    Navigator.pushReplacement(
-      context,
-      pageRouteBuilder(page),
-    );
+void navigateOff(BuildContext context, Widget page) =>
+    Navigator.pushReplacement(context, pageRouteBuilder(page));
 
 BuildContext get globalContext => globalKey.currentContext!;

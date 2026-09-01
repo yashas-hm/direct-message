@@ -51,23 +51,17 @@ class _BannerAdvertState extends State<BannerAdvert> {
       width: context.width,
       height: context.height / 15,
       child: isLoading == null
-          ? Container(
-              color: Colors.black26,
-            )
+          ? Container(color: Colors.black26)
           : isLoading!
-              ? Center(
-                  child: CircularProgressIndicator.adaptive(
-                    valueColor: AlwaysStoppedAnimation(
-                      blue,
-                    ),
-                  ),
-                )
-              : SizedBox(
-                  width: context.width,
-                  child: AdWidget(
-                    ad: bannerAd!,
-                  ),
-                ),
+          ? Center(
+              child: CircularProgressIndicator.adaptive(
+                valueColor: AlwaysStoppedAnimation(blue),
+              ),
+            )
+          : SizedBox(
+              width: context.width,
+              child: AdWidget(ad: bannerAd!),
+            ),
     );
   }
 }
