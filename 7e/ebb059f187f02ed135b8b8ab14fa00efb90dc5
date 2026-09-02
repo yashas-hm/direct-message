@@ -1,0 +1,46 @@
+site/index.html
+  h_489c0496f9f57d 132
+lib/view/open_wa_screen.dart
+  h_489c0496f9f57d 5-9,15-17,28-30,36,53,57-60,73-74,92,95,103,105-107,120,129-132,136,140-141,148,155,158,170,172-175,184,186,189,198,208,210,212,214-219,221,224,232,235-236,240-268,271-318
+lib/view/splash_screen.dart
+  h_489c0496f9f57d 1-3,25,28-44,52,91-94
+lib/main.dart
+  h_489c0496f9f57d 1,3,6-9,11-12,15-26
+  h_489c0496f9f57d 10,13-14,27
+lib/view/ad_banner.dart
+  h_489c0496f9f57d 3-4,8-27,53,77
+lib/theme/theme.dart
+  h_489c0496f9f57d 1,3,6-9
+  h_489c0496f9f57d 4
+pubspec.yaml
+  h_489c0496f9f57d 4
+.gitignore
+  h_489c0496f9f57d 49
+lib/theme/dm_colors.dart
+  h_489c0496f9f57d 1-98
+lib/theme/dm_theme.dart
+  h_489c0496f9f57d 1,3-5,9-14,16-52,54-56
+lib/theme/palette.dart
+  h_489c0496f9f57d 1-13
+lib/theme/sizes.dart
+  h_489c0496f9f57d 1-55
+lib/theme/theme_controller.dart
+  h_489c0496f9f57d 1,3-5,7,9,11,13-18,21-23,27-30
+lib/utilities/extensions.dart
+  h_489c0496f9f57d 1-2,17-19
+lib/utilities/preferences.dart
+  h_489c0496f9f57d 3-4,6-7,9-22,24-27
+pubspec.lock
+  h_489c0496f9f57d 1-746
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "7eebb059f187f02ed135b8b8ab14fa00efb90dc5",
+  "prompts": {},
+  "humans": {
+    "h_489c0496f9f57d": {
+      "author": "Yashas H Majmudar <yashashm.dev@gmail.com>"
+    }
+  }
+}
