@@ -1,0 +1,23 @@
+.github/workflows/build_for_vercel.yml
+  h_489c0496f9f57d 6
+lib/view/app_drawer.dart
+  h_489c0496f9f57d 1-102,104-112,114-122
+  h_489c0496f9f57d 103,113,123-136
+lib/view/open_wa_screen.dart
+  h_489c0496f9f57d 8,83,85-90,92
+pubspec.lock
+  h_489c0496f9f57d 347-362,736-743
+pubspec.yaml
+  h_489c0496f9f57d 21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "e94d703f4268ed092a1920282fc56bc769188539",
+  "prompts": {},
+  "humans": {
+    "h_489c0496f9f57d": {
+      "author": "Yashas H Majmudar <yashashm.dev@gmail.com>"
+    }
+  }
+}
