@@ -9,13 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # tools
+
   shared_preferences: ^2.5.5
   flutter_svg: ^2.3.0
   url_launcher: ^6.3.2
   google_fonts: ^8.2.1
-
-  # widgets
   gap: ^3.0.1
   day_night_themed_switcher: ^2.0.2
   google_mobile_ads: ^9.1.0
@@ -42,4 +40,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/
+    - assets/images/logo.svg
