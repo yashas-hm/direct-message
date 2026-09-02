@@ -1,0 +1,5 @@
+# robots.txt for directmessage.yashashm.dev
+User-agent: *
+Allow: /
+
+Sitemap: https://directmessage.yashashm.dev/sitemap.xml

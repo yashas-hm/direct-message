@@ -1,61 +1,26 @@
-name: Build and Deploy Flutter Web to Vercel
+name: Deploy Static Site to Vercel
 
 on:
   push:
     branches:
       - master
     paths:
-      - '.github/**'
-      - 'lib/screens/web/**'
-      - 'lib/core/constants/app_colors.dart'
-      - 'web/**'
-      - 'vercel/vercel.json'
-      - 'vercel/.vercelignore'
+      - 'site/**'
+      - '.github/workflows/build_for_vercel.yml'
   workflow_dispatch:
 
 jobs:
-
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Flutter Setup
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
+      - uses: actions/checkout@v7
 
-      - name: Flutter Version
-        run: flutter --version
-
-      - name: Enable Web
-        run: flutter config --enable-web
-
-      - name: Get Flutter Dependencies
-        run: flutter pub get
-
-      - name: Prepare Flutter Web
-        run: |
-          flutter pub remove country_calling_code_kit google_mobile_ads 
-          rm -rf lib/screens/app
-          rm -rf lib/widgets
-          rm -r lib/main_app.dart
-          
-      - name: Build Web     
-        run: |
-          flutter build web -t lib/main_web.dart
-
-      - name: Prepare Build Artifact
-        run: |
-          mkdir vercel_build
-          cp -rf build/web/. vercel_build
-          cp -rf vercel/. vercel_build
-          
       - name: Deploy on Vercel
-        uses: amondnet/vercel-action@v41.1.4
+        uses: amondnet/vercel-action@v42.3.0
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-args: '--prod'
-          working-directory: vercel_build/
+          working-directory: site/

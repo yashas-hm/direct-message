@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "src": "/privacy-policy",
+      "dest": "/privacy-policy.html"
+    },
+    {
+      "src": "/privacy",
+      "status": 308,
+      "headers": { "Location": "/privacy-policy" }
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
