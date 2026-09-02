@@ -18,6 +18,7 @@ dependencies:
   day_night_themed_switcher: ^2.0.2
   google_mobile_ads: ^9.1.0
   country_calling_code_kit: ^2.0.0
+  package_info_plus: ^8.0.0
 
 dev_dependencies:
   flutter_test:

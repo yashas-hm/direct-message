@@ -1,12 +1,11 @@
 import 'dart:io';
 
 import 'package:country_calling_code_kit/country_calling_code_kit.dart';
-import 'package:day_night_themed_switcher/day_night_themed_switcher.dart';
 import 'package:direct_message/theme/sizes.dart';
-import 'package:direct_message/theme/theme.dart';
 import 'package:direct_message/utilities/extensions.dart';
 import 'package:direct_message/utilities/preferences.dart';
 import 'package:direct_message/view/ad_banner.dart';
+import 'package:direct_message/view/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -81,32 +80,16 @@ class _OpenWaScreenState extends State<OpenWaScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
+      endDrawer: const AppDrawer(),
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Expanded(
-              child: Text(
-                'Direct Message',
-                style: GoogleFonts.lato(
-                  textStyle: TextStyle(
-                    fontSize: Sizes.fontXl,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
+        title: Text(
+          'Direct Message',
+          style: GoogleFonts.lato(
+            textStyle: const TextStyle(
+              fontSize: Sizes.fontXl,
+              fontWeight: FontWeight.w600,
             ),
-            DayNightSwitch(
-              onChange: (_) {
-                ThemeController.instance.toggle();
-              },
-              duration: Durations.long1,
-              size: Sizes.iconLg,
-              initiallyDark: ThemeController.instance.isDark,
-            ),
-          ],
+          ),
         ),
       ),
       body: SizedBox(

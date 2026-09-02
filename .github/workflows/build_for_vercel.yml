@@ -3,7 +3,7 @@ name: Deploy Static Site to Vercel
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'site/**'
       - '.github/workflows/build_for_vercel.yml'
