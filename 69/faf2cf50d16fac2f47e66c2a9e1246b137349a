@@ -1,0 +1,14 @@
+pubspec.yaml
+  h_489c0496f9f57d 12,43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "69faf2cf50d16fac2f47e66c2a9e1246b137349a",
+  "prompts": {},
+  "humans": {
+    "h_489c0496f9f57d": {
+      "author": "Yashas H Majmudar <yashashm.dev@gmail.com>"
+    }
+  }
+}
