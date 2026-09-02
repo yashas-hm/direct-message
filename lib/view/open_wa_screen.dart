@@ -2,19 +2,19 @@ import 'dart:io';
 
 import 'package:country_calling_code_kit/country_calling_code_kit.dart';
 import 'package:day_night_themed_switcher/day_night_themed_switcher.dart';
-import 'package:direct_message/core/constants/app_colors.dart';
-import 'package:direct_message/core/constants/app_constants.dart';
-import 'package:direct_message/core/utilities/extensions.dart';
-import 'package:direct_message/core/utilities/preference_utils.dart';
-import 'package:direct_message/core/utilities/utils.dart';
-import 'package:direct_message/secrets.dart';
-import 'package:direct_message/widgets/ad_banner.dart';
+import 'package:direct_message/theme/sizes.dart';
+import 'package:direct_message/theme/theme.dart';
+import 'package:direct_message/utilities/extensions.dart';
+import 'package:direct_message/utilities/preferences.dart';
+import 'package:direct_message/view/ad_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:resize/resize.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+const String appLogo = 'assets/images/logo.svg';
 
 class OpenWaScreen extends StatefulWidget {
   const OpenWaScreen({super.key});
@@ -25,12 +25,15 @@ class OpenWaScreen extends StatefulWidget {
 
 class _OpenWaScreenState extends State<OpenWaScreen>
     with WidgetsBindingObserver {
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController countryCodeController = TextEditingController();
+
   InterstitialAd? interstitialAd;
   int phoneLength = 0;
 
   void loadAd() {
     InterstitialAd.load(
-      adUnitId: Platform.isIOS ? iOSInterstitialAdId : androidInterstitialAdId,
+      adUnitId: Platform.isIOS ? Ads.iosInterstitial : Ads.androidInterstitial,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {
@@ -47,7 +50,12 @@ class _OpenWaScreenState extends State<OpenWaScreen>
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     loadAd();
+    _prefillCountryCode();
     super.initState();
+  }
+
+  Future<void> _prefillCountryCode() async {
+    countryCodeController.text = await Preferences.getCountryCode ?? '';
   }
 
   @override
@@ -62,6 +70,8 @@ class _OpenWaScreenState extends State<OpenWaScreen>
 
   @override
   void dispose() {
+    phoneController.dispose();
+    countryCodeController.dispose();
     WidgetsBinding.instance.removeObserver(this);
     interstitialAd?.dispose();
     super.dispose();
@@ -79,10 +89,10 @@ class _OpenWaScreenState extends State<OpenWaScreen>
           children: [
             Expanded(
               child: Text(
-                appName,
+                'Direct Message',
                 style: GoogleFonts.lato(
                   textStyle: TextStyle(
-                    fontSize: 22.sp,
+                    fontSize: Sizes.fontXl,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -90,11 +100,11 @@ class _OpenWaScreenState extends State<OpenWaScreen>
             ),
             DayNightSwitch(
               onChange: (_) {
-                toggleTheme(context);
+                ThemeController.instance.toggle();
               },
-              duration: 600.milliseconds,
-              size: 25.sp,
-              initiallyDark: themeMode.value == ThemeMode.dark,
+              duration: Durations.long1,
+              size: Sizes.iconLg,
+              initiallyDark: ThemeController.instance.isDark,
             ),
           ],
         ),
@@ -107,7 +117,7 @@ class _OpenWaScreenState extends State<OpenWaScreen>
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Gap(30.sp),
+            Gap(Sizes.spacingXxl),
             Flexible(
               child: ConstrainedBox(
                 constraints: BoxConstraints(
@@ -116,33 +126,36 @@ class _OpenWaScreenState extends State<OpenWaScreen>
                 ),
                 child: SvgPicture.asset(
                   appLogo,
-                  colorFilter: ColorFilter.mode(blue, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(
+                    context.colors.primary,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
-            Gap(30.sp),
+            Gap(Sizes.spacingXxl),
             Row(
               children: [
                 Container(
-                  height: 60.sp,
-                  margin: EdgeInsets.only(left: 20.sp),
+                  height: Sizes.controlHeight,
+                  margin: const EdgeInsets.only(left: Sizes.spacingLg),
                   alignment: Alignment.centerLeft,
                   width: context.width / 6,
                   child: TextField(
                     controller: countryCodeController,
                     textAlignVertical: TextAlignVertical.center,
                     maxLines: 1,
-                    onTap: () => countryCodePicker(context),
+                    onTap: _showPicker,
                     decoration: InputDecoration(
                       labelText: 'Code',
                       focusColor: Theme.of(context).colorScheme.secondary,
                       counterText: '',
                       fillColor: Theme.of(context).colorScheme.secondary,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(Sizes.radiusMd),
                         borderSide: BorderSide(
                           color: Theme.of(context).colorScheme.secondary,
-                          width: 2,
+                          width: Sizes.borderThin,
                         ),
                       ),
                     ),
@@ -154,9 +167,12 @@ class _OpenWaScreenState extends State<OpenWaScreen>
                 ),
                 Expanded(
                   child: Container(
-                    height: 60.sp,
+                    height: Sizes.controlHeight,
                     alignment: Alignment.centerLeft,
-                    margin: EdgeInsets.only(right: 20.sp, left: 10.sp),
+                    margin: const EdgeInsets.only(
+                      right: Sizes.spacingLg,
+                      left: Sizes.spacingSm,
+                    ),
                     child: TextField(
                       controller: phoneController,
                       textAlignVertical: TextAlignVertical.center,
@@ -165,12 +181,12 @@ class _OpenWaScreenState extends State<OpenWaScreen>
                         labelText: 'Number',
                         counterText: '',
                         focusColor: Theme.of(context).colorScheme.secondary,
-                        fillColor: element,
+                        fillColor: context.colors.surface,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(Sizes.radiusMd),
                           borderSide: BorderSide(
                             color: Theme.of(context).colorScheme.secondary,
-                            width: 2,
+                            width: Sizes.borderThin,
                           ),
                         ),
                       ),
@@ -179,7 +195,7 @@ class _OpenWaScreenState extends State<OpenWaScreen>
                       cursorColor: Theme.of(context).colorScheme.secondary,
                       onChanged: (value) {
                         if (value.length - 1 == phoneLength) {
-                          pasteCheck();
+                          _pasteCheck();
                         }
                         phoneLength = value.length;
                       },
@@ -189,20 +205,23 @@ class _OpenWaScreenState extends State<OpenWaScreen>
                 ),
               ],
             ),
-            Gap(30.sp),
+            Gap(Sizes.spacingXxl),
             Expanded(child: Container()),
-            Gap(30.sp),
+            Gap(Sizes.spacingXxl),
             GestureDetector(
-              onTap: openerDetails,
+              onTap: _openerDetails,
               child: Container(
-                height: 60.sp,
-                width: 60.sp,
-                decoration: BoxDecoration(shape: BoxShape.circle, color: blue),
+                height: Sizes.controlHeight,
+                width: Sizes.controlHeight,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: context.colors.primary,
+                ),
                 alignment: Alignment.center,
-                child: const Icon(Icons.send, color: bgLight),
+                child: Icon(Icons.send, color: context.colors.onPrimary),
               ),
             ),
-            Gap(30.sp),
+            Gap(Sizes.spacingXxl),
           ],
         ),
       ),
@@ -210,15 +229,91 @@ class _OpenWaScreenState extends State<OpenWaScreen>
     );
   }
 
-  void countryCodePicker(BuildContext context) async {
+  void _showPicker() async {
     final country = await showCountryPickerModalSheet(
       context: context,
-      splashColor: blue.withValues(alpha: 0.3),
-      flagCornerRadius: 5.sp,
+      splashColor: context.colors.primary.withValues(alpha: 0.3),
+      flagCornerRadius: Sizes.radiusXs,
     );
     if (country != null) {
       countryCodeController.text = country.callCode;
-      setCountryCode(country.callCode);
+      Preferences.setCountryCode(country.callCode);
     }
   }
+
+  void _pasteCheck() {
+    final text = phoneController.text;
+    if (text.length > 10) {
+      phoneController.text = text.substring(text.length - 10);
+      countryCodeController.text = text.substring(0, text.length - 10);
+    }
+  }
+
+  void _openerDetails() {
+    final phone = phoneController.text;
+    var code = '';
+    if (countryCodeController.text != '') {
+      code = countryCodeController.text.startsWith('+')
+          ? countryCodeController.text.substring(1)
+          : countryCodeController.text;
+    }
+
+    if (phone == '') {
+      showSnackBar('Number cannot be empty');
+    } else if (phone.length < 10) {
+      showSnackBar('Invalid Number');
+    } else if (code == '') {
+      showSnackBar('Enter Country Code');
+    } else {
+      _openWhatsapp(phone, code);
+    }
+  }
+
+  Future<void> _openWhatsapp(String phone, String code) async {
+    if (code.contains('+')) code = code.replaceAll('+', '');
+    final uri = Uri.parse('https://api.whatsapp.com/send?phone=$code$phone');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else if (mounted) {
+      showSnackBar('Some unexpected error occurred');
+    }
+  }
+
+  void showSnackBar(String message) =>
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          padding: const EdgeInsets.symmetric(
+            horizontal: Sizes.spacingMd,
+            vertical: Sizes.spacingXxs,
+          ),
+          dismissDirection: DismissDirection.vertical,
+          content: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: Sizes.spacing3xl),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const Icon(
+                  Icons.close,
+                  size: Sizes.iconLg,
+                  color: Colors.redAccent,
+                ),
+                const Gap(Sizes.spacingMd),
+                Expanded(
+                  child: Text(
+                    message,
+                    style: GoogleFonts.lato(
+                      textStyle: const TextStyle(
+                        fontSize: Sizes.fontMd,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
 }

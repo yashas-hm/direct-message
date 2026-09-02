@@ -1,7 +1,7 @@
 name: direct_message
 description: "Direct Message lets you send WhatsApp messages instantly by inputting a phone number, without the need to save contacts."
 publish_to: 'none'
-version: 1.2.0+5
+version: 2.0.0+5
 
 environment:
   sdk: '>=3.13.1 <4.0.0'
@@ -9,15 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_web_plugins:
-    sdk: flutter
-    
   # tools
-  resize: ^1.0.0
   shared_preferences: ^2.5.5
   flutter_svg: ^2.3.0
   url_launcher: ^6.3.2
-  intl: ^0.20.3
   google_fonts: ^8.2.1
 
   # widgets
@@ -25,7 +20,6 @@ dependencies:
   day_night_themed_switcher: ^2.0.2
   google_mobile_ads: ^9.1.0
   country_calling_code_kit: ^2.0.0
-  lava_lamp_effect: ^1.0.3
 
 dev_dependencies:
   flutter_test:

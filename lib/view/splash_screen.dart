@@ -1,8 +1,6 @@
-import 'package:direct_message/core/constants/app_constants.dart';
-import 'package:direct_message/core/utilities/extensions.dart';
-import 'package:direct_message/core/utilities/preference_utils.dart';
-import 'package:direct_message/core/utilities/utils.dart';
-import 'package:direct_message/screens/app/open_wa_screen.dart';
+import 'package:direct_message/theme/theme.dart';
+import 'package:direct_message/utilities/extensions.dart';
+import 'package:direct_message/view/open_wa_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,12 +22,26 @@ class _SplashScreenState extends State<SplashScreen>
       DeviceOrientation.portraitDown,
     ]);
 
-    await checkDarkMode(context);
-
-    countryCodeController.text = await getCountryCode ?? '';
+    await ThemeController.instance.init(context);
 
     if (context.mounted) {
-      navigateOff(context, const OpenWaScreen());
+      Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (_, _, _) => const OpenWaScreen(),
+          transitionsBuilder: (_, animation, _, child) => FadeTransition(
+            opacity: animation.drive(
+              Tween<double>(
+                begin: 0,
+                end: 1,
+              ).chain(CurveTween(curve: Curves.easeInOut)),
+            ),
+            child: child,
+          ),
+          transitionDuration: Durations.short4,
+          reverseTransitionDuration: Durations.short4,
+        ),
+      );
     }
   }
 
@@ -37,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     animController = AnimationController(
       vsync: this,
-      duration: 800.milliseconds,
+      duration: Durations.long1,
     );
     animController.forward();
     animController.addStatusListener((status) {
@@ -76,7 +88,10 @@ class _SplashScreenState extends State<SplashScreen>
             child: SvgPicture.asset(
               appLogo,
               height: context.width / 2.5,
-              colorFilter: const ColorFilter.mode(Colors.blue, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                context.colors.primary,
+                BlendMode.srcIn,
+              ),
             ),
           ),
         ),

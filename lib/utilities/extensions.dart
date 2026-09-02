@@ -1,3 +1,5 @@
+import 'package:direct_message/theme/theme.dart' show DmColors;
+import 'package:flutter/material.dart' show Theme;
 import 'package:flutter/widgets.dart';
 
 extension ContextExtension on BuildContext {
@@ -11,8 +13,7 @@ extension ContextExtension on BuildContext {
 
   bool get isSystemDark =>
       MediaQuery.of(this).platformBrightness == Brightness.dark;
-}
 
-extension NumberExtensions on num {
-  Duration get milliseconds => Duration(milliseconds: round());
+  /// Theme-aware colours registered via the [DmColors] theme extension.
+  DmColors get colors => Theme.of(this).extension<DmColors>()!;
 }
