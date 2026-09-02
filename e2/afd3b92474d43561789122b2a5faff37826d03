@@ -1,0 +1,24 @@
+.github/workflows/build_for_vercel.yml
+  h_489c0496f9f57d 1,8-9,13,17,20,26
+site/index.html
+  h_489c0496f9f57d 5-9,11-32,34-56,58-71,74-83,86-233,236-359
+site/privacy-policy.html
+  h_489c0496f9f57d 1-300
+site/robots.txt
+  h_489c0496f9f57d 1-5
+site/sitemap.xml
+  h_489c0496f9f57d 1-15
+site/vercel.json
+  h_489c0496f9f57d 3-11,20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "e2afd3b92474d43561789122b2a5faff37826d03",
+  "prompts": {},
+  "humans": {
+    "h_489c0496f9f57d": {
+      "author": "Yashas H Majmudar <yashashm.dev@gmail.com>"
+    }
+  }
+}
